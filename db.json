@@ -1,0 +1,37 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Felipe",
+      "password": "popo123"
+    }
+  ],
+  "permission": [
+    {
+      "id": 1,
+      "description": "Can create user"
+    },
+    {
+      "id": 2,
+      "description": "Can update user"
+    },
+    {
+      "id": 3,
+      "description": "Can delete user"
+    }
+  ],
+  "user_permission": [
+    {
+      "user_id": 1,
+      "permission_id": 1
+    },
+    {
+      "user_id": 1,
+      "permission_id": 2
+    },
+    {
+      "user_id": 1,
+      "permission_id": 3
+    }
+  ]
+}
