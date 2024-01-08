@@ -1,11 +1,12 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import Service from "../services/auth";
 import UnauthorizedError from "../../../models/error/Unauthorized";
+import { IRequest } from "../../../@types/express";
 
-type Login = Request<unknown, unknown, { name: string, password: string }>;
+type Login = IRequest<unknown, unknown, { name: string, password: string }>;
 
 export default class AuthController {
-  static login(req: Login, _res: Response, next: NextFunction) {
+  static login(req: Login, res: Response, next: NextFunction) {
     try {
       if (!req.session) throw new Error("Session not found");
       
@@ -17,8 +18,8 @@ export default class AuthController {
 
       if (!user) throw new UnauthorizedError();
 
-      // req.session.user = user;
-      // res.send(user);
+      req.session.user = user;
+      res.send(user);
     } catch (error) {
       next(error);
     }
