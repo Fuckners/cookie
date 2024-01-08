@@ -1,6 +1,22 @@
 version: '3'
 
 services:
+  apps:
+    container_name: apps
+    ports:
+      - 15150:15150
+      - 15151:15151
+      - 15152:15152
+    env_file:
+      - ./apps/.env
+    build:
+      context: ./apps
+      dockerfile: Dockerfile
+    volumes:
+      - ./apps/db.json:/app/db.json
+    networks:
+      - auth
+
   redis:
     container_name: redis
     image: redis
@@ -13,7 +29,9 @@ services:
       - ./redis/config/redis.conf:/usr/local/etc/redis.conf
       - ./redis/logs.log:/var/log/redis/redis-server.log
     command: [redis-server, /usr/local/etc/redis.conf]
+    networks:
+      - auth
 
 networks:
   auth:
-    driver: bridge# networks:
+    driver: bridge

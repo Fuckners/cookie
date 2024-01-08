@@ -1,4 +1,5 @@
 **/.*
+!*.example
 
 # Redis
 redis.conf

@@ -11,14 +11,14 @@ import routes from "./routes";
 // import cookieConfig from "../../config/cookie";
 import errorLogger from "../../middlewares/error/logger";
 import errorHandler from "../../middlewares/error/handler";
-import { REDIS_PASSWORD, SESSION_SECRET } from "../../config";
+import { REDIS_HOST, REDIS_PASSWORD, REDIS_PORT, SESSION_SECRET } from "../../config";
 import auth from "../../middlewares/auth";
 
 const redisClient = createClient({
   password: REDIS_PASSWORD,
   socket: {
-    host: "localhost",
-    port: 6379,
+    host: REDIS_HOST,
+    port: REDIS_PORT,
   }
 });
 redisClient.connect()
