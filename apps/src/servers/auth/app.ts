@@ -11,12 +11,20 @@ import routes from "./routes";
 // import cookieConfig from "../../config/cookie";
 import errorLogger from "../../middlewares/error/logger";
 import errorHandler from "../../middlewares/error/handler";
-import { SESSION_SECRET } from "../../config";
-// import { SESSION_SECRET } from "../../config";
+import { REDIS_PASSWORD, SESSION_SECRET } from "../../config";
 
-const redisClient = createClient();
-redisClient.connect().catch(console.log);
-console.log(redisClient.isReady)
+const redisClient = createClient({
+  password: REDIS_PASSWORD,
+  socket: {
+    host: "localhost",
+    port: 6379,
+  }
+});
+redisClient.connect()
+  .then(() => console.log(redisClient.isReady))
+  .catch(console.log);
+  
+redisClient.on("error", (err) => console.log("[AUTH]", err));
 
 app
   .use(session({

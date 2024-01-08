@@ -6,15 +6,14 @@ services:
     image: redis
     ports:
       - 6379:6379
-    expose:
-      - 6379
     env_file:
       - ./redis/.env
     volumes:
       - ./redis/.data:/data
-    networks:
-      - auth
+      - ./redis/config/redis.conf:/usr/local/etc/redis.conf
+      - ./redis/logs.log:/var/log/redis/redis-server.log
+    command: [redis-server, /usr/local/etc/redis.conf]
 
 networks:
   auth:
-    driver: bridge
+    driver: bridge# networks:

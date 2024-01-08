@@ -1,1 +1,5 @@
 **/.*
+
+# Redis
+redis.conf
+redis/logs.log
