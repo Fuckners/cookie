@@ -24,7 +24,7 @@ A primeira e principal aplicação é a chamada "auth", onde, como o nome diz, �
     - `password` - Senha referente ao nome do usuário;
   - **resumo**: Responsável por receber name e password do usuário, autenticar e salvar uma sessão para ele.
 
-- ##### /
+- ##### /permissions
   - **resumo**: Mostra as permissões do usuário na sessão.
 
 ---
