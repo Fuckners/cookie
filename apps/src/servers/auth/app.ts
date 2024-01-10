@@ -33,6 +33,11 @@ app
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 24 * 5
+    },
     store: new RedisStore({
       client: redisClient,
     }),
