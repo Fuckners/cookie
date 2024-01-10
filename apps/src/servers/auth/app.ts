@@ -24,6 +24,10 @@ redisClient.connect()
 redisClient.on("error", (err) => console.log("[AUTH]", err));
 
 app
+  .use(cors({
+    origin: ['localhost'],
+    credentials: true,
+  }))
   .use(session({
     name: "auth",
     secret: SESSION_SECRET,
